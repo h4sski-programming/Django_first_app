@@ -1,0 +1,31 @@
+{% extends "polls/base.html" %}
+{% block title %}Profile {{ u.first_name }} {{ u.last_name }}{% endblock %}
+
+{% block content %}
+
+<div class="content m-4">
+    <table class="table table-sm">
+        <tr>
+            <th>User ID</th>
+            <td>{{ u.id }}</td>
+        </tr>
+        <tr>
+            <th>User</th>
+            <td>{{ u.first_name }} {{ u.last_name }}</td>
+        </tr>
+        <tr>
+            <th>Email</th>
+            <td>{{ u.email }}</td>
+        </tr>
+        <tr>
+            <th>Role</th>
+            <td>{{ u.role }}</td>
+        </tr>
+        <tr>
+            <th>Account created</th>
+            <td>{{ u.create_time }}</td>
+        </tr>
+    </table>
+</div>
+
+{% endblock %}
