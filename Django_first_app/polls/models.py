@@ -18,7 +18,7 @@ class User(models.Model):
 
 class Vechicle(models.Model):
     user_vechicle = models.ForeignKey(User, on_delete=models.CASCADE)
-    total_distance = models.IntegerField()
+    total_distance = models.IntegerField(default=0)
     name = models.CharField(max_length=100)
     type = models.CharField(max_length=100)
     create_time = models.DateTimeField(auto_created=True)
