@@ -1,5 +1,5 @@
 {% extends "polls/base.html" %}
-{% block title %}Intex title{% endblock %}
+{% block title %}Index title{% endblock %}
 
 {% block content %}
 
@@ -15,6 +15,19 @@
         </tr>
     {% endfor %}
     </table>
+    </br>
+    <table class="table">
+        {% for v in users.vechicle_set %}
+            <tr>
+                <th>{{ v.id }}</th>
+                <td>{{ v.user_vechicle }}</td>
+                <td>{{ v.name }}</td>
+                <td>{{ v.create_time }}</td>
+                <td>{{ v.update_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
+    <p>after vechicle table</p>
 </div>
 
 {% endblock %}

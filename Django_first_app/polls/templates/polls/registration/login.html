@@ -1,0 +1,20 @@
+{% extends "polls/base.html" %}
+{% block title %}Login{% endblock %}
+
+{% block content %}
+
+<div class="content m-4">
+    <form method="POST">
+        {% csrf_token %}
+        {{ form.as_div }}
+
+
+        <!-- Submit button -->
+        <button type="submit" value="submit"
+                class="btn btn-primary btn-block mb-4">
+            Sign in
+        </button>
+    </form>
+</div>
+
+{% endblock %}

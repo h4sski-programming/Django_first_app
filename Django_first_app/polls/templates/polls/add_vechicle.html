@@ -1,0 +1,49 @@
+{% extends "polls/base.html" %}
+{% block title %}Add vechicle{% endblock %}
+
+{% block content %}
+
+<div class="content m-4">
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table table-sm">
+            {{ form.as_table }}
+        </table>
+        <!-- Submit button -->
+        <button type="submit" value="submit"
+                class="btn btn-primary w-25">
+            Add
+        </button>
+    </form>
+    <br/>
+    {% if v %}
+    <table class="table">
+        <tr>
+            <th class="w-25">User ID</th>
+            <td>{{ v.user_id.id }}</td>
+        </tr>
+        <tr>
+            <th>Total distance</th>
+            <td>{{ v.total_distance }}</td>
+        </tr>
+        <tr>
+            <th>Name</th>
+            <td>{{ v.name }}</td>
+        </tr>
+        <tr>
+            <th>Type</th>
+            <td>{{ v.type }}</td>
+        </tr>
+        <tr>
+            <th>Create time</th>
+            <td>{{ v.create_time }}</td>
+        </tr>
+        <tr>
+            <th>Update time</th>
+            <td>{{ v.update_time }}</td>
+        </tr>
+    </table>
+    {% endif %}
+</div>
+
+{% endblock %}

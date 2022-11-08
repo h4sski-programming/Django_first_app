@@ -29,13 +29,20 @@
     <br/>
     <h3>List of vechicles</h3>
     <table class="table table-sm">
+        <tr>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Total distance</th>
+            <th>Created time</th>
+            <th>Update time</th>
+        </tr>
         {% for v in vechicles %}
         <tr>
-            <th>{{ v.id }}</th>
             <td>{{ v.name }}</td>
             <td>{{ v.type }}</td>
             <td>{{ v.total_distance }}</td>
             <td>{{ v.create_time }}</td>
+            <td>{{ v.update_time }}</td>
         </tr>
         {% endfor %}
     </table>
