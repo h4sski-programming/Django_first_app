@@ -13,20 +13,9 @@
     </tr>
 </table>
 <br/>
-<form method="POST">
-    {% csrf_token %}
-    <table class="table table-sm">
-        {{ form }}
-    </table>
-
-    <button type="submit" value="submit" class="btn btn-success px-5 py-0">Add</button>
-    <a href="/{{ u.id }}" class="btn btn-danger px-5 py-0">Back</a>
-</form>
-
-</br>
 
 <h4>{{ u.first_name }} {{ u.last_name }}</h4>
-<form method="POST" action="/{{ u.id }}/">
+<form method="POST">
     {% csrf_token %}
     <table class="table table-sm">
         <tr>

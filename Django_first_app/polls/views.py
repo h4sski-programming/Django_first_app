@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 
 from .forms_custom import AddVehicleForm, VehicleChoiceForm
 from .models import User, Vehicle, Activity
@@ -32,6 +32,7 @@ def vehicle(request, user_id):
             new_vehicle.name = name
             new_vehicle.type = type
             new_vehicle.save()
+            return redirect(f'/{user_id}/vehicle')
     else:
         form = AddVehicleForm()
         vehicle_form = VehicleChoiceForm()
