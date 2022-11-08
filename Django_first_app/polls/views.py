@@ -1,6 +1,6 @@
 from django.shortcuts import render
 
-from .forms_custom import AddVehicleForm
+from .forms_custom import AddVehicleForm, VehicleChoiceForm
 from .models import User, Vehicle, Activity
 
 
@@ -34,5 +34,10 @@ def vehicle(request, user_id):
             new_vehicle.save()
     else:
         form = AddVehicleForm()
+        vehicle_form = VehicleChoiceForm()
     return render(request, f'polls/vehicle.html',
-                  {'form': form, 'vehicles': vehicles, 'u': user})
+                  {'form': form,
+                   'vehicles': vehicles,
+                   'vehicle_form': vehicle_form,
+                   'u': user,
+                   })

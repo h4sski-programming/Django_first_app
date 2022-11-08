@@ -3,45 +3,73 @@
 
 {% block content %}
 
+<table class="table table-sm">
+    <tr>
+        <th>{{ u.id }}</th>
+        <td>{{ u.first_name }} {{ u.last_name }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+        <td>{{ u.create_time }}</td>
+    </tr>
+</table>
+<br/>
+<form method="POST">
+    {% csrf_token %}
+    <table class="table table-sm">
+        {{ form }}
+    </table>
+
+    <button type="submit" value="submit" class="btn btn-success px-5 py-0">Add</button>
+    <a href="/{{ u.id }}" class="btn btn-danger px-5 py-0">Back</a>
+</form>
+
+</br>
+
+<h4>{{ u.first_name }} {{ u.last_name }}</h4>
+<form method="POST" action="/{{ u.id }}/">
+    {% csrf_token %}
     <table class="table table-sm">
         <tr>
-            <th>{{ u.id }}</th>
-            <td>{{ u.first_name }} {{ u.last_name }}</td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.role }}</td>
-            <td>{{ u.create_time }}</td>
+            <th>User</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th></th>
+        </tr>
+        <tr>
+            <td>{{ u }}</td>
+            <td>
+                <input type="text" name="name" placeholder="Type name" class="w-100">
+            </td>
+            <td>
+                {{ vehicle_form.as_p }}
+            </td>
+            <td>
+                <button type="submit" value="submit" class="btn btn-success py-0">Add</button>
+            </td>
         </tr>
     </table>
-    <br/>
-    <form method="POST">
-        {% csrf_token %}
-        <table class="table table-sm">
-            {{ form }}
-        </table>
+</form>
 
-        <button type="submit" value="submit" class="btn btn-success px-5 py-0">Add</button>
-        <a href="/{{ u.id }}" class="btn btn-danger px-5 py-0">Back</a>
-    </form>
-    <br/>
-    <table class="table table-sm">
-            <tr>
-                <th>ID</th>
-                <th>User</th>
-                <th>Name</th>
-                <th>Type</th>
-                <th>Create time</th>
-                <th>Update time</th>
-            </tr>
-        {% for v in vehicles %}
-            <tr>
-                <th>{{ v.id }}</th>
-                <td>{{ v.user }}</td>
-                <td>{{ v.name }}</td>
-                <td>{{ v.type }}</td>
-                <td>{{ v.create_time }}</td>
-                <td>{{ v.update_time }}</td>
-            </tr>
-        {% endfor %}
-    </table>
+<br/>
+<table class="table table-sm">
+        <tr>
+            <th>ID</th>
+            <th>User</th>
+            <th>Name</th>
+            <th>Type</th>
+            <th>Create time</th>
+            <th>Update time</th>
+        </tr>
+    {% for v in vehicles %}
+        <tr>
+            <th>{{ v.id }}</th>
+            <td>{{ v.user }}</td>
+            <td>{{ v.name }}</td>
+            <td>{{ v.type }}</td>
+            <td>{{ v.create_time }}</td>
+            <td>{{ v.update_time }}</td>
+        </tr>
+    {% endfor %}
+</table>
 
 {% endblock %}
