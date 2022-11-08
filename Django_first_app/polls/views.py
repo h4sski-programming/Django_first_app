@@ -32,13 +32,31 @@ def vehicle(request, user_id):
             new_vehicle.name = name
             new_vehicle.type = type
             new_vehicle.save()
-            return redirect(f'/{user_id}/vehicle')
+            return redirect(f'/{user_id}')
     else:
         form = AddVehicleForm()
         vehicle_form = VehicleChoiceForm()
     return render(request, f'polls/vehicle.html',
                   {'form': form,
                    'vehicles': vehicles,
+                   'vehicle_form': vehicle_form,
+                   'u': user,
+                   })
+
+
+def vehicle_edit(response, user_id, v_id):
+    user = User.objects.get(id=user_id)
+    vehicle = Vehicle.objects.get(id=v_id)
+    if response.method == 'POST':
+        if response.POST.get('edit'):
+            vehicle.name = response.POST.get('name')
+            vehicle.save()
+        elif response.POST.get('delete'):
+            vehicle.delete()
+        return redirect(f'/{user_id}/')
+    vehicle_form = VehicleChoiceForm()
+    return render(response, f'polls/vehicle_edit.html',
+                  {'v': vehicle,
                    'vehicle_form': vehicle_form,
                    'u': user,
                    })

@@ -1,32 +1,31 @@
 {% extends "polls/base.html" %}
-{% block title %}Profile {{ u.first_name }} {{ u.last_name }}{% endblock %}
+{% block title %}Profile {{ u.first_name }} {{ u.last_name }} |{% endblock %}
 
 {% block content %}
 
-    <table class="table table-sm">
-        <tr>
-            <th>{{ u.id }}</th>
-            <td>{{ u.first_name }} {{ u.last_name }}</td>
-            <td>{{ u.email }}</td>
-            <td>{{ u.role }}</td>
-            <td>{{ u.create_time }}</td>
-        </tr>
-    </table>
+<table class="table table-sm">
+    <tr>
+        <th>{{ u.id }}</th>
+        <td>{{ u.first_name }} {{ u.last_name }}</td>
+        <td>{{ u.email }}</td>
+        <td>{{ u.role }}</td>
+    </tr>
+</table>
 
-    <br/>
+<br/>
 
-    <div class="row mb-2">
-        <div class="col"><h4>List of vehicles</h4></div>
-        <a href="/{{ u.id }}/vehicle" class="btn btn-outline-success">Add new vehicle</a>
-    </div>
+<div class="row mb-2">
+    <div class="col"><h4>List of vehicles</h4></div>
+    <a href="/{{ u.id }}/vehicle" class="btn btn-outline-success">Add new vehicle</a>
+</div>
+
     <table class="table table-sm">
             <tr>
                 <th>ID</th>
                 <th>User</th>
                 <th>Name</th>
                 <th>Type</th>
-                <th>Create time</th>
-                <th>Update time</th>
+                <th></th>
             </tr>
         {% for v in vehicles %}
             <tr>
@@ -34,8 +33,9 @@
                 <td>{{ v.user }}</td>
                 <td>{{ v.name }}</td>
                 <td>{{ v.type }}</td>
-                <td>{{ v.create_time }}</td>
-                <td>{{ v.update_time }}</td>
+                <td>
+                    <a href="/{{ u.id }}/vehicle/{{ v.id }}" class="btn btn-outline-success py-0">Edit</a>
+                </td>
             </tr>
         {% endfor %}
     </table>

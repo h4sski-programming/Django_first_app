@@ -1,5 +1,5 @@
 {% extends "polls/base.html" %}
-{% block title %}Add vehicle |{% endblock %}
+{% block title %}Edit vehicle |{% endblock %}
 
 {% block content %}
 
@@ -27,38 +27,17 @@
         <tr>
             <td>{{ u }}</td>
             <td>
-                <input type="text" name="name" placeholder="Type name" class="w-100">
+                <input type="text" name="name" value="{{ v.name }}" class="w-100">
             </td>
             <td>
                 {{ vehicle_form.as_p }}
             </td>
             <td>
-                <button type="submit" value="submit" class="btn btn-success py-0">Add</button>
+                <button type="submit" name="edit" value="edit" class="btn btn-success py-0">Edit</button>
+                <button type="submit" name="delete" value="delete" class="btn btn-danger py-0">Delete</button>
             </td>
         </tr>
     </table>
 </form>
-
-<br/>
-<table class="table table-sm">
-        <tr>
-            <th>ID</th>
-            <th>User</th>
-            <th>Name</th>
-            <th>Type</th>
-            <th>Create time</th>
-            <th>Update time</th>
-        </tr>
-    {% for v in vehicles %}
-        <tr>
-            <th>{{ v.id }}</th>
-            <td>{{ v.user }}</td>
-            <td>{{ v.name }}</td>
-            <td>{{ v.type }}</td>
-            <td>{{ v.create_time }}</td>
-            <td>{{ v.update_time }}</td>
-        </tr>
-    {% endfor %}
-</table>
 
 {% endblock %}
