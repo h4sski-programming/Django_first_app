@@ -1,5 +1,5 @@
 {% extends "polls/base.html" %}
-{% block title %}Profile {{ u.first_name }} {{ u.last_name }}{% endblock %}
+{% block title %}Add vehicle{% endblock %}
 
 {% block content %}
 
@@ -13,10 +13,16 @@
         </tr>
     </table>
     <br/>
-    <div class="row mb-2">
-        <div class="col"><h4>List of vehicles</h4></div>
-        <a href="/{{ u.id }}/vehicle" class="btn btn-outline-success">Add new vehicle</a>
-    </div>
+    <form method="POST">
+        {% csrf_token %}
+        <table class="table table-sm">
+            {{ form }}
+        </table>
+
+        <button type="submit" value="submit" class="btn btn-success px-5 py-0">Add</button>
+        <a href="/{{ u.id }}" class="btn btn-danger px-5 py-0">Back</a>
+    </form>
+    <br/>
     <table class="table table-sm">
             <tr>
                 <th>ID</th>

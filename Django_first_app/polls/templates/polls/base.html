@@ -18,12 +18,20 @@
     <title>{% block title %}Title{% endblock %}</title>
 </head>
 <body>
-    <div class="menu">Menu</div>
+    <div class="container my-3">
+        <a href="/" class="btn py-1 btn-primary">Home</a>
+        <a href="/1/" class="btn py-1 btn-secondary">Tim Tech</a>
+        <a href="/2/" class="btn py-1 btn-secondary">Joe Eoj</a>
+    </div>
 
-    {% block content %}
-    {% endblock %}
+    <div class="container">
+        <div id="content" name="content" class="main">
+            {% block content %}
+            {% endblock %}
+        </div>
+    </div>
 
-    <script
+<script
       src="https://code.jquery.com/jquery-3.2.1.slim.min.js"
       integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN"
       crossorigin="anonymous"

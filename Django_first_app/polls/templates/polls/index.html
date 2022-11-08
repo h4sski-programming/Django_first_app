@@ -3,11 +3,17 @@
 
 {% block content %}
 
-<div class="content m-4">
     <table class="table table-sm">
+        <tr>
+            <th>ID</th>
+            <th>User name</th>
+            <th>Email</th>
+            <th>Role</th>
+            <th>Create time</th>
+        </tr>
     {% for u in users %}
         <tr>
-            <td>{{ u.id }}</td>
+            <th>{{ u.id }}</th>
             <td>{{ u.first_name }} {{ u.last_name }}</td>
             <td>{{ u.email }}</td>
             <td>{{ u.role }}</td>
@@ -16,18 +22,50 @@
     {% endfor %}
     </table>
     </br>
-    <table class="table">
-        {% for v in users.vechicle_set %}
+    <table class="table table-sm">
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Name</th>
+                <th>Type</th>
+                <th>Create time</th>
+                <th>Update time</th>
+            </tr>
+        {% for v in vehicles %}
             <tr>
                 <th>{{ v.id }}</th>
-                <td>{{ v.user_vechicle }}</td>
+                <td>{{ v.user }}</td>
                 <td>{{ v.name }}</td>
+                <td>{{ v.type }}</td>
                 <td>{{ v.create_time }}</td>
                 <td>{{ v.update_time }}</td>
             </tr>
         {% endfor %}
     </table>
-    <p>after vechicle table</p>
-</div>
+    </br>
+    <table class="table table-sm">
+            <tr>
+                <th>ID</th>
+                <th>User</th>
+                <th>Vehicle</th>
+                <th>Distance</th>
+                <th>Type</th>
+                <th>Date</th>
+                <th>Create time</th>
+                <th>Update time</th>
+            </tr>
+        {% for a in activitys %}
+            <tr>
+                <th>{{ a.id }}</th>
+                <td>{{ a.user }}</td>
+                <td>{{ a.vehicle }}</td>
+                <td>{{ a.distance }}</td>
+                <td>{{ a.type }}</td>
+                <td>{{ a.date }}</td>
+                <td>{{ a.create_time }}</td>
+                <td>{{ a.update_time }}</td>
+            </tr>
+        {% endfor %}
+    </table>
 
 {% endblock %}
