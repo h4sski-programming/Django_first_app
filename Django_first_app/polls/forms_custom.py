@@ -1,5 +1,7 @@
 from django import forms
 
+from .models import Vehicle
+
 
 class AddVehicleForm(forms.Form):
     CHOICES = [
@@ -16,3 +18,4 @@ class VehicleChoiceForm(forms.Form):
         ('scooter', 'scooter'),
         ]
     type = forms.ChoiceField(label='', choices=CHOICES)
+

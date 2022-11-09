@@ -3,28 +3,32 @@
 
 {% block content %}
 <h3>Today is {{ today.isoformat }}</h3>
-<p> {{ calendar_list_days }} </p>
+<br/>
 
-<table class="table table-sm">
-    <tr>
-        <th>Mon</th>
-        <th>Tue</th>
-        <th>Wed</th>
-        <th>Thu</th>
-        <th>Fri</th>
-        <th>Sat</th>
-        <th>Sun</th>
-        <th></th>
-    </tr>
-    {% for week in calendar_list_days %}
-    <tr>
-        {% for d in week %}
-        <td>{{ d }}</td>
+<form method="post" action="/activity/edit/">
+    {% csrf_token %}
+    <table class="table table-sm w-100">
+        <tr>
+            <th class="col-2">Date</th>
+            <th>Distance [km]</th>
+            <th>Vehicle</th>
+            <th class="col-2">Buttons</th>
+        </tr>
+        {% for day in calendar_list %}
+            <tr>
+                {% if day.day == today.day %}
+                    <th class="text-primary"><u>{{ day.isoformat }}</u></th>
+                {% else %}
+                    <td>{{ day.isoformat }}</td>
+                {% endif %}
+                <td>{{ day.day }}</td>
+                <td></td>
+                <td>
+                    <button type="submit" name="day" value="{{ day.isoformat }}" class="btn btn-outline-success py-0">Edit</button>
+                </td>
+            </tr>
         {% endfor %}
-    </tr>
-    {% endfor %}
-
-</table>
-
+    </table>
+</form>
 
 {% endblock %}

@@ -32,7 +32,6 @@ class Activity(models.Model):
     user = models.ForeignKey(User, on_delete=models.CASCADE)
     vehicle = models.ForeignKey(Vehicle, on_delete=models.CASCADE)
     distance = models.IntegerField()
-    type = models.CharField(max_length=50)
     date = models.DateField()
     create_time = models.DateTimeField(auto_now_add=True)
     update_time = models.DateTimeField(auto_now=True)

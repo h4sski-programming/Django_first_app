@@ -17,8 +17,12 @@ def index(request):
 def profile(request, user_id):
     user = User.objects.get(id=user_id)
     vehicles = Vehicle.objects.filter(user=user.id)
-    return render(request, 'polls/profile.html',
-                  {'u': user, 'vehicles': vehicles})
+    activities = Activity.objects.filter(user=user.id)
+    return render(request, 'polls/profile.html', {
+        'u': user,
+        'vehicles': vehicles,
+        'activities': activities,
+        })
 
 
 def vehicle(request, user_id):
@@ -76,24 +80,55 @@ def calendar(response):
     first_month_day = today.replace(day=1)
     first_month_day_weekday = first_month_day.weekday()
     first_day_first_week = first_month_day - timedelta(days=first_month_day_weekday)
-    calendar_day = first_day_first_week
 
-    calendar_list_days = []
+    temp_date = first_month_day
+    calendar_list = []
+    while today.month == temp_date.month:
+        calendar_list.append(temp_date)
+        temp_date = temp_date + timedelta(days=1)
 
-    for i in range(5):
-        week_list = []
-        for j in range(7):
-            if not calendar_list_days:
-                week_list = [int(calendar_day.day)]
-                continue
-            calendar_day = calendar_day + timedelta(days=1)
-            week_list.append(int(calendar_day.day))
-        week_list.append('')
-        calendar_list_days.append(week_list)
+    user = User.objects.get(id=1)
+    activities_user = Activity.objects.filter(user=user)
 
     return render(response, 'polls/calendar.html', {
         'today': today,
-        'first_month_day': first_month_day,
-        'first_day_first_week': first_day_first_week,
-        'calendar_list_days': calendar_list_days,
+        'calendar_list': calendar_list,
+        'user': user,
+        'activities_user': activities_user,
+        })
+
+
+def activity_edit(response):
+    def convert_date(day_str):
+        year, month, day_input = day_str.split('-')
+        return date(int(year), int(month), int(day_input))
+
+    user = User.objects.get(id=1)
+    user_vehicles = Vehicle.objects.filter(user=user.id)
+
+    if response.POST.get('save'):
+        day = convert_date(response.POST.get('save'))
+        distance = response.POST.get('distance')
+        vehicle = Vehicle.objects.get(id=response.POST.get('vehicle_id'))
+        new_activity = Activity()
+        new_activity.user = user
+        new_activity.vehicle = vehicle
+        new_activity.distance = distance
+        new_activity.date = day
+        new_activity.save()
+        return redirect(f'/{user.id}/')
+
+    elif response.POST.get('day'):
+        day = convert_date(response.POST.get('day'))
+    else:
+        print(f'Missing "save" or "day" input')
+
+    vehicle_list = []
+    for v in user_vehicles:
+        vehicle_list.append(v)
+
+    return render(response, 'polls/activity_edit.html', {
+        'u': user,
+        'day': day,
+        'vehicle_list': vehicle_list,
         })

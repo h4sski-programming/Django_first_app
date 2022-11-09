@@ -39,5 +39,38 @@
             </tr>
         {% endfor %}
     </table>
+<br/>
+<div>
+    <div class="row mb-2">
+        <div class="col"><h4>List of activities</h4></div>
+        <button type="submit" class="btn btn-outline-success">Add new activity</button>
+    </div>
+    <form method="post" action="/activity/edit/">
+        {% csrf_token %}
+        <table class="table table-sm">
+                <tr>
+                    <th>ID</th>
+                    <th>User</th>
+                    <th>Vehicle</th>
+                    <th>Distance [km]</th>
+                    <th>Date</th>
+                    <th></th>
+                </tr>
+            {% for a in activities %}
+                <tr>
+                    <th>{{ a.id }}</th>
+                    <td>{{ a.user }}</td>
+                    <td>{{ a.vehicle }}</td>
+                    <td>{{ a.distance }}</td>
+                    <td>{{ a.date.isoformat }}</td>
+                    <td>
+                        <input type="hidden" name="">
+                        <button type="submit" name="day" value="{{ a.date }}" class="btn btn-outline-success py-0">Edit</button>
+                    </td>
+                </tr>
+            {% endfor %}
+        </table>
+    </form>
+</div>
 
 {% endblock %}

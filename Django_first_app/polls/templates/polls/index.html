@@ -48,7 +48,6 @@
                 <th>User</th>
                 <th>Vehicle</th>
                 <th>Distance</th>
-                <th>Type</th>
                 <th>Date</th>
                 <th>Create time</th>
                 <th>Update time</th>
@@ -59,7 +58,6 @@
                 <td>{{ a.user }}</td>
                 <td>{{ a.vehicle }}</td>
                 <td>{{ a.distance }}</td>
-                <td>{{ a.type }}</td>
                 <td>{{ a.date }}</td>
                 <td>{{ a.create_time }}</td>
                 <td>{{ a.update_time }}</td>
@@ -67,4 +65,13 @@
         {% endfor %}
     </table>
 
+
+    <footer class="container text-right text-muted">
+        <div><small>
+            This app was coded by h4sski.
+        </small></div>
+        <div><small>
+            You can review code <a href="https://github.com/h4sski-programming/Django_first_app">here</a>.
+        </small></div>
+    </footer>
 {% endblock %}
