@@ -1,0 +1,30 @@
+{% extends "polls/base.html" %}
+{% block title %}Calendar |{% endblock %}
+
+{% block content %}
+<h3>Today is {{ today.isoformat }}</h3>
+<p> {{ calendar_list_days }} </p>
+
+<table class="table table-sm">
+    <tr>
+        <th>Mon</th>
+        <th>Tue</th>
+        <th>Wed</th>
+        <th>Thu</th>
+        <th>Fri</th>
+        <th>Sat</th>
+        <th>Sun</th>
+        <th></th>
+    </tr>
+    {% for week in calendar_list_days %}
+    <tr>
+        {% for d in week %}
+        <td>{{ d }}</td>
+        {% endfor %}
+    </tr>
+    {% endfor %}
+
+</table>
+
+
+{% endblock %}
